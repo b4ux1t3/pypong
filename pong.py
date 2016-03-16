@@ -73,6 +73,24 @@ class ball():
         system("clear")
         grid = clearGrid(self.gridx, self.gridy)
         self.update()
+        # Note: x and y are backwards from normal here. This is because of how
+        # lists (and arrays!) work. We have a list of lists.
+        #
+        # For example, here is if grid had 7 columns and 3 rows, with an
+        # asterisk in the very middle:
+        # [[" ", " ",  " ",  " ",  " ",  " ",  " "]
+        #  [" ", " ",  " ",  "*",  " ",  " ",  " "],
+        #  [" ", " ",  " ",  " ",  " ",  " ",  " "]]
+        #
+        # If we want to access that asterisk, we first have to tell grid which
+        # of its lists we would like to access. In this case, it is the first
+        # (zero-indexed) list, which we can get with grid[1]. Next we need to
+        # tell it what index of that list we want to access, which is the third
+        # (zero-indexed) item. So we are getting grid[1][3].
+        # This is called a multi-dimensional list known as a multi-dimensional
+        # array in most languages. In theory, you could add as many dimensions
+        # as you want!
+
         grid[self.y][self.x] = "*"
         for i in grid:            # For each row
             for j in i:           # For each cell in that row
