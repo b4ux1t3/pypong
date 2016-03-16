@@ -80,7 +80,7 @@ class ball():
         #
         # For example, here is if grid had 7 columns and 3 rows, with an
         # asterisk in the very middle:
-        # [[" ", " ",  " ",  " ",  " ",  " ",  " "]
+        # [[" ", " ",  " ",  " ",  " ",  " ",  " "],
         #  [" ", " ",  " ",  "*",  " ",  " ",  " "],
         #  [" ", " ",  " ",  " ",  " ",  " ",  " "]]
         #
