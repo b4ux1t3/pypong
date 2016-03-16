@@ -40,7 +40,8 @@ class ball():
         self.dy = dy
         self.tempRow = "" # Buffer for rendering the grid
 
-    # Reverses the velocity of the ball
+    # Reverses the velocity of the ball. Multiplying an integer by negative one
+    # gives us a perfect reflection.
     def reflectx(self):
         self.dx *= -1
 
@@ -53,14 +54,14 @@ class ball():
         self.x += self.dx
         self.y += self.dy
 
-        if self.y >= self.gridy - 1:
-            self.y = self.gridy - 1
-            self.reflecty()
-        elif self.y <= 0:
+        if self.y >= self.gridy - 1: # If y is past the end of the grid
+            self.y = self.gridy - 1  # Set it at the end of the grid
+            self.reflecty()          # and then reflect it
+        elif self.y <= 0:            # Same if it is past the beginning
             self.y = 0
             self.reflecty()
 
-        if self.x >= self.gridx - 1:
+        if self.x >= self.gridx - 1: # Same as y
             self.x = self.gridx - 1
             self.reflectx()
         elif self.x <= 0:
@@ -73,20 +74,21 @@ class ball():
         grid = clearGrid(self.gridx, self.gridy)
         self.update()
         grid[self.y][self.x] = "*"
-        for i in grid:
-            for j in i:
-                self.tempRow += j
-            print self.tempRow
-            self.tempRow = ""
+        for i in grid:            # For each row
+            for j in i:           # For each cell in that row
+                self.tempRow += j # Add that cell to the buffer
+            print self.tempRow    # Print each row
+            self.tempRow = ""     # Clear the buffer
 
         # On-screen reporting of ball position
+        # Calculating Leading zeroes
         if self.x < 10:
-            stringSelfX = "00" + str(self.x)
+            stringSelfX = "00" + str(self.x) # If x is one digit, add two zeroes
         elif self.x < 100:
-            stringSelfX = "0"+ str(self.x)
+            stringSelfX = "0"+ str(self.x)   # If x is two digits, add one zero
 
         if self.y < 10:
-            stringSelfY = "00" + str(self.y)
+            stringSelfY = "00" + str(self.y) # Same as X
         elif self.x < 100:
             stringSelfY = "0"+ str(self.y)
 
