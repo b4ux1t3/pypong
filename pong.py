@@ -11,7 +11,8 @@ if len(argv) < 3:
 x = int(argv[1])
 y = int(argv[2])
 
-# If user gives the delta for the x and y, set them to those, otherwise set each to 1
+# If user gives the delta for the x and y, set them to those, otherwise set
+# each to 1
 if len(argv) == 5:
     dx = int(argv[3])
     dy = int(argv[4])
@@ -27,7 +28,9 @@ def clearGrid(x, y):
 grid = clearGrid(x, y)
 
 class ball():
-    # Every ball needs a position, a bounding box, and a velocity
+    # Every ball needs a position, a bounding box (to remain within the grid),
+    # and a velocity
+    #                 | pos |  bounding   |  vel |
     def __init__(self, x, y, gridx, gridy, dx, dy):
         self.x = x
         self.y = y
@@ -35,7 +38,7 @@ class ball():
         self.gridy = gridy
         self.dx = dx
         self.dy = dy
-        self.tempRow = ""
+        self.tempRow = "" # Buffer for rendering the grid
 
     # Reverses the velocity of the ball
     def reflectx(self):
@@ -65,7 +68,6 @@ class ball():
             self.reflectx()
 
     # Updates the position of the ball with self.update(), then draws the grid
-
     def draw(self, grid):
         system("clear")
         grid = clearGrid(self.gridx, self.gridy)
@@ -99,7 +101,7 @@ try:
         b.draw(grid)
         time.sleep(0.1)
 # Because I'm an idiot, catch any errors that result from being out of bounds,
-# then log the position and velocity of the ball as well as the entire grid 
+# then log the position and velocity of the ball as well as the entire grid
 except(IndexError):
     tempRow = ""
     f = open("log.txt", "w")
